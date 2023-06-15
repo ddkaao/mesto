@@ -1,0 +1,21 @@
+.input__text {
+    border: 0;
+    width: 100%;
+    max-width: 358px;
+    height: 27px;
+    box-sizing: border-box;
+    border-bottom: 1px solid #000;
+    background-color: transparent;
+    font-size: 14px;
+    font-family: inherit;
+    padding: 0;
+}
+
+@media screen and (max-width: 721px) {
+    
+    .input__text {
+        max-width: 238px;
+        height: 27px;
+
+    }
+}

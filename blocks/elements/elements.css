@@ -7,3 +7,10 @@
     margin: 0 auto 66px;
     justify-items: center;
 }
+
+@media screen {
+    
+    .elements {
+        margin-bottom: 48px;
+    }
+}

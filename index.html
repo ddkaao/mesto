@@ -11,7 +11,6 @@
     <div class="page">
         <header class="header">
             <img src="./images/Vector.svg" alt="Логотип" class="header__logo">
-            <img src="./images/Line.svg" alt="Линия" class="header__line">
         </header>
 
         <main class="content">
@@ -19,54 +18,56 @@
                 <div class="profile__content">
                     <img src="./images/avatar.jpg" alt="Аватар" class="profile__avatar">
                     <div class="profile__info">
-                    <h1 class="profile__name">Жак-Ив Кусто</h1>
-                    <p class="profile__description">Исследователь океана</p>
-                    <button class="profile__edit-btn"></button>
+                        <div class="profile__text">
+                            <h1 class="profile__name">Жак-Ив Кусто</h1>
+                            <p class="profile__description">Исследователь океана</p>
+                        </div>
+                        <button type="button" class="profile__edit-btn"></button>
                     </div>
                 </div>
-                <button class="profile__add-btn"></button>
+                <button type="button" class="profile__add-btn"></button>
             </section>
             <section class="elements">
                 <div class="element">
                     <img src="./images/kirill-pershin-1088404-unsplash.jpg" alt="Карачаевск" class="element__image">
                     <div class="element__caption">
                         <h2 class="element__name">Карачаевск</h2>
-                        <button class="element__like"></button>
+                        <button type="button" class="element__like"></button>
                     </div>
                 </div>
                 <div class="element">
                     <img src="./images/kirill-pershin-1404681-unsplash.jpg" alt="Гора Эльбрус" class="element__image">
                     <div class="element__caption">
                         <h2 class="element__name">Гора Эльбрус</h2>
-                        <button class="element__like"></button>
+                        <button type="button" class="element__like"></button>
                     </div>
                 </div>
                 <div class="element">
                     <img src="./images/kirill-pershin-1556355-unsplash.jpg" alt="Домбай" class="element__image">
                     <div class="element__caption">
                         <h2 class="element__name">Домбай</h2>
-                        <button class="element__like"></button>
+                        <button type="button" class="element__like"></button>
                     </div>
                 </div>
                 <div class="element">
                     <img src="./images/kirill-pershin-1404681-unsplash.jpg" alt="Гора Эльбрус" class="element__image">
                     <div class="element__caption">
-                        <h2 class="element__name">Гора Эльбрус</h2>
-                        <button class="element__like"></button>
+                        <h2 class="element__name">Гора Эльбруsdfsdfsdfsdfsdfsdfsdfsdfsdfс</h2>
+                        <button type="button" class="element__like"></button>
                     </div>
                 </div>
                 <div class="element">
                     <img src="./images/kirill-pershin-1556355-unsplash.jpg" alt="Домбай" class="element__image">
                     <div class="element__caption">
                         <h2 class="element__name">Домбай</h2>
-                        <button class="element__like"></button>
+                        <button type="button" class="element__like"></button>
                     </div>
                 </div>
                 <div class="element">
                     <img src="./images/kirill-pershin-1088404-unsplash.jpg" alt="Карачаевск" class="element__image">
                     <div class="element__caption">
                         <h2 class="element__name">Карачаево-Черкесск</h2>
-                        <button class="element__like"></button>
+                        <button type="button" class="element__like"></button>
                     </div>
                 </div>
             </section>
@@ -74,12 +75,12 @@
 
         <aside class="popup">
             <div class="popup__container">
-                <button class="popup__close-btn"></button>
+                <button type="reset" class="popup__close-btn"></button>
                 <h2 class="popup__title">Редактировать профиль</h2>
-                <form class="input">
-                    <input type="text" placeholder="Имя" class="input__text input__text_type_name">
-                    <input type="text" placeholder="О себе" class="input__text input__text_type_about">
-                    <button class="popup__submit-btn">Сохранить</button>
+                <form name="input" class="input">
+                    <input name="input__text_type_name" type="text" placeholder="Имя" class="input__text input__text_type_name">
+                    <input name="input__text_type_about" type="text" placeholder="О себе" class="input__text input__text_type_about">
+                    <button type="submit" class="popup__submit-btn">Сохранить</button>
                 </form>
             </div>
         </aside>
@@ -89,6 +90,6 @@
         </footer>
     </div>
 
-    <script src="./script.js"></script>
+    <script src="./script/script.js"></script>
 </body>
 </html>

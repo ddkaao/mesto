@@ -1,14 +1,16 @@
 .profile__info {
-    position: relative;
     width: 336px;
+    display: grid;
+    grid-template-columns: 294px 24px;
+    column-gap: 18px;
 }
 
 @media screen and (max-width: 721px) {
     
     .profile__info {
         width: 282px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+        grid-template-columns: 235px 18px;
+        column-gap: 10px;
+        justify-items: end;
     }
 }

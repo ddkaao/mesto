@@ -1,5 +1,8 @@
 .input {
     max-width: 358px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
 }
 
 @media screen and (max-width: 721px) {

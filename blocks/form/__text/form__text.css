@@ -1,4 +1,4 @@
-.input__text {
+.form__text {
     border: 0;
     width: 100%;
     max-width: 358px;
@@ -13,9 +13,13 @@
     padding: 0;
 }
 
+.form__text:first-child {
+    margin-bottom: 30px;
+}
+
 @media screen and (max-width: 721px) {
     
-    .input__text {
+    .form__text {
         max-width: 238px;
     }
 }

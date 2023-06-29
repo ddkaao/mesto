@@ -22,10 +22,10 @@
                             <h1 class="profile__name">Жак-Ив Кусто</h1>
                             <p class="profile__description">Исследователь океана</p>
                         </div>
-                        <button type="button" class="profile__edit-btn"></button>
+                        <button type="button" aria-label="Редактировать" class="profile__edit-btn"></button>
                     </div>
                 </div>
-                <button type="button" class="profile__add-btn"></button>
+                <button type="button" aria-label="Добавить" class="profile__add-btn"></button>
             </section>
             <section class="elements">               
             </section>
@@ -33,11 +33,11 @@
 
         <aside class="popup popup_type-edit">
             <div class="popup__container">
-                <button type="button" class="popup__close-btn popup__close-btn_profile"></button>
+                <button type="button" aria-label="Закрыть" class="popup__close-btn popup__close-btn_profile"></button>
                 <h2 class="popup__title">Редактировать профиль</h2>
                 <form name="form" class="form form_type-profile">
-                    <input name="form__text_type_name" type="text" placeholder="Имя" class="form__text form__text_type_name">
-                    <input name="form__text_type_about" type="text" placeholder="О себе" class="form__text form__text_type_about">
+                    <input name="form__text_type_name" type="text" placeholder="Имя" class="form__text form__text_type_name" required>
+                    <input name="form__text_type_about" type="text" placeholder="О себе" class="form__text form__text_type_about" required>
                     <button type="submit" class="popup__submit-btn">Сохранить</button>
                 </form>
             </div>
@@ -45,11 +45,11 @@
 
         <aside class="popup popup_type-add">
             <div class="popup__container">
-                <button type="button" class="popup__close-btn popup__close-btn_new-card"></button>
+                <button type="button" aria-label="Закрыть" class="popup__close-btn popup__close-btn_new-card"></button>
                 <h2 class="popup__title">Новое место</h2>
                 <form name="form" class="form form_type-card">
-                    <input name="form__text_type_name" type="text" placeholder="Название" class="form__text form__text_type_label">
-                    <input name="form__text_type_about" type="text" placeholder="Ссылка на картинку" class="form__text form__text_type_link">
+                    <input name="form__text_type_name" type="text" placeholder="Название" class="form__text form__text_type_label" required>
+                    <input name="form__text_type_about" type="url" placeholder="Ссылка на картинку" class="form__text form__text_type_link" required>
                     <button type="submit" class="popup__submit-btn">Создать</button>
                 </form>
             </div>
@@ -57,7 +57,7 @@
 
         <aside class="popup popup_type-view">
             <div class="popup__img-container">
-                <button type="button" class="popup__close-btn popup__close-btn_card"></button>
+                <button type="button" aria-label="Закрыть" class="popup__close-btn popup__close-btn_card"></button>
                 <img src="/" alt="" class="popup__image">
                 <h3 class="popup__caption"></h3>
             </div>
@@ -70,11 +70,11 @@
 
     <template class="card-template">
         <div class="element">
-            <button type="button" class="element__trash"></button>
+            <button type="button" aria-label="Удалить" class="element__trash"></button>
             <img src="/" alt="" class="element__image">
             <div class="element__caption">
                 <h2 class="element__name"></h2>
-                <button type="button" class="element__like"></button>
+                <button type="button" aria-label="Лайкнуть" class="element__like"></button>
             </div>
         </div>
     </template>

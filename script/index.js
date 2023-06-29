@@ -1,22 +1,22 @@
-let editButton = document.querySelector('.profile__edit-btn');
-let closeProfileButton = document.querySelector('.popup__close-btn_profile');
-let closeNewCardButton = document.querySelector('.popup__close-btn_new-card');
-let closeCardButton = document.querySelector('.popup__close-btn_card');
-let addButton = document.querySelector('.profile__add-btn')
-let popupProfile = document.querySelector('.popup__type_edit-profile');
-let popupCards = document.querySelector('.popup__type_add-card');
-let popupImage = document.querySelector('.popup__type_view-card');
-let formElement = document.querySelector('.form__type_profile');
-let nameInput = formElement.querySelector('.form__text_type_name');
-let jobInput = formElement.querySelector('.form__text_type_about');
+const editButton = document.querySelector('.profile__edit-btn');
+const closeProfileButton = document.querySelector('.popup__close-btn_profile');
+const closeNewCardButton = document.querySelector('.popup__close-btn_new-card');
+const closeCardButton = document.querySelector('.popup__close-btn_card');
+const addButton = document.querySelector('.profile__add-btn')
+const popupProfile = document.querySelector('.popup__type_edit-profile');
+const popupCards = document.querySelector('.popup__type_add-card');
+const popupImage = document.querySelector('.popup__type_view-card');
+const formElement = document.querySelector('.form__type_profile');
+const nameInput = formElement.querySelector('.form__text_type_name');
+const jobInput = formElement.querySelector('.form__text_type_about');
 let profileName = document.querySelector('.profile__name');
 let profileJob = document.querySelector('.profile__description');
 const cardsTemplate = document.querySelector('.card-template');
 const elementList = document.querySelector('.elements');
-let formItem = document.querySelector('.form__type_card');
-let elementImage = document.querySelector('.element__image');
-let labelInput = document.querySelector('.form__text_type_label');
-let linkInput = document.querySelector('.form__text_type_link');
+const formItem = document.querySelector('.form__type_card');
+const elementImage = document.querySelector('.element__image');
+const labelInput = document.querySelector('.form__text_type_label');
+const linkInput = document.querySelector('.form__text_type_link');
 
 /* Функция для открытия попапов */
 function appearPopup(item) {

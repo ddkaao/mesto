@@ -27,6 +27,18 @@ function hidePopup(item) {
     item.classList.remove('popup_opened');
 };
 
+function hidePopupOnButton(evt, item) {
+    if (evt.key === 'Escape') { 
+        hidePopup(item);
+    }
+};
+
+function hidePopupOnOverlay(evt, item) {
+    if (evt.target === evt.currentTarget) {
+        hidePopup(item);
+    }
+}
+
 /* Функция для редактирования профиля */
 function profileFormSubmit(evt) {
     evt.preventDefault();
@@ -100,4 +112,11 @@ addButton.addEventListener('click', () => appearPopup(popupCards)); /* Отсл�
 closeProfileButton.addEventListener('click', () => hidePopup(popupProfile)); /* Отслеживания клика по кнопке закрытия попапа для редактирования профиля */
 closeNewCardButton.addEventListener('click', () => hidePopup(popupCards)); /* Отслеживания клика по кнопке закрытия попапа для добваления новой карточки */
 closeCardButton.addEventListener('click', () => hidePopup(popupImage)); /* Отслеживания клика по кнопке закрытия попапа для просмотра карточки */
+document.addEventListener('keydown', (evt) => hidePopupOnButton(evt, popupProfile)); /* Отслеживания нажатия на 'Escape' для закрытия попапа редактирования профиля */
+document.addEventListener('keydown', (evt) => hidePopupOnButton(evt, popupImage)); /* Отслеживания нажатия на 'Escape' для закрытия попапа просмотра карточки */
+document.addEventListener('keydown', (evt) => hidePopupOnButton(evt, popupCards)); /* Отслеживания нажатия на 'Escape' для закрытия попапа добваления новой карточки */
+popupProfile.addEventListener('click', (evt) => hidePopupOnOverlay(evt, popupProfile)); /* Отслеживания клика на оверлэй для закрытия попапа редактирования профиля */
+popupCards.addEventListener('click', (evt) => hidePopupOnOverlay(evt, popupCards)); /* Отслеживания клика на оверлэй для закрытия попапа добваления новой карточки */
+popupImage.addEventListener('click', (evt) => hidePopupOnOverlay(evt, popupImage)); /* Отслеживания клика на оверлэй для закрытия попапа просмотра карточки */
+
 

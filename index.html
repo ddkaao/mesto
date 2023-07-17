@@ -35,9 +35,11 @@
             <div class="popup__container">
                 <button type="button" aria-label="Закрыть" class="popup__close-btn popup__close-btn_profile"></button>
                 <h2 class="popup__title">Редактировать профиль</h2>
-                <form name="form" class="form form_type-profile">
-                    <input name="form__text_type_name" type="text" placeholder="Имя" class="form__text form__text_type_name" required>
-                    <input name="form__text_type_about" type="text" placeholder="О себе" class="form__text form__text_type_about" required>
+                <form name="form" class="form form_type-profile" novalidate>
+                    <input name="form__text_type_name" type="text" placeholder="Имя" class="form__text form__text_type_name" id="name-input" required minlength="2" maxlength="40">
+                    <span class="form__input-error name-input-error"></span>
+                    <input name="form__text_type_about" type="text" placeholder="О себе" class="form__text form__text_type_about" id="about-input" required minlength="2" max="200">
+                    <span class="form__input-error about-input-error"></span>
                     <button type="submit" class="popup__submit-btn">Сохранить</button>
                 </form>
             </div>
@@ -47,9 +49,11 @@
             <div class="popup__container">
                 <button type="button" aria-label="Закрыть" class="popup__close-btn popup__close-btn_new-card"></button>
                 <h2 class="popup__title">Новое место</h2>
-                <form name="form" class="form form_type-card">
-                    <input name="form__text_type_name" type="text" placeholder="Название" class="form__text form__text_type_label" required>
-                    <input name="form__text_type_about" type="url" placeholder="Ссылка на картинку" class="form__text form__text_type_link" required>
+                <form name="form" class="form form_type-card" novalidate>
+                    <input name="form__text_type_label" type="text" placeholder="Название" class="form__text form__text_type_label" id="label-input" required minlength="2" maxlength="30">
+                    <span class="form__input-error label-input-error"></span>
+                    <input name="form__text_type_link" type="url" placeholder="Ссылка на картинку" class="form__text form__text_type_link" id="link-input" required>
+                    <span class="form__input-error link-input-error"></span>
                     <button type="submit" class="popup__submit-btn">Создать</button>
                 </form>
             </div>
@@ -81,5 +85,6 @@
 
     <script src="./script/cards.js"></script>
     <script src="./script/index.js"></script>
+    <script src="./script/validate.js"></script>
 </body>
 </html>

@@ -2,7 +2,9 @@ const editButton = document.querySelector('.profile__edit-btn');
 const closeProfileButton = document.querySelector('.popup__close-btn_profile');
 const closeNewCardButton = document.querySelector('.popup__close-btn_new-card');
 const closeCardButton = document.querySelector('.popup__close-btn_card');
-const addButton = document.querySelector('.profile__add-btn')
+const addButton = document.querySelector('.profile__add-btn');
+const createButton = document.querySelector('.popup__submit-btn_create');
+const saveButton = document.querySelector('.popup__submit-btn_save');
 const popupProfile = document.querySelector('.popup_type-edit');
 const popupCards = document.querySelector('.popup_type-add');
 const popupImage = document.querySelector('.popup_type-view');
@@ -27,12 +29,14 @@ function hidePopup(item) {
     item.classList.remove('popup_opened');
 };
 
+/* Функция для закрытия попапов по нажатию ESC */
 function hidePopupOnButton(evt, item) {
     if (evt.key === 'Escape') { 
         hidePopup(item);
     }
 };
 
+/* Функция для закрытия попапов по нажатию на оверлэй */
 function hidePopupOnOverlay(evt, item) {
     if (evt.target === evt.currentTarget) {
         hidePopup(item);
@@ -106,9 +110,18 @@ formProfile.addEventListener('submit', profileFormSubmit); /* Подтвержд
 editButton.addEventListener('click', () => {
     nameInput.value = profileName.textContent;
     jobInput.value = profileJob.textContent;
-    appearPopup(popupProfile)});
+    appearPopup(popupProfile);
+    removeErrors(popupProfile);
+    enableSubmitButton(saveButton)});
 
-addButton.addEventListener('click', () => appearPopup(popupCards)); /* Отслеживания клика по кнопке открытия попапа для добавления новой карточки */
+/* Отслеживания клика по кнопке открытия попапа для добавления новой карточки */
+addButton.addEventListener('click', () => {
+    labelInput.value = '';
+    linkInput.value = '';
+    removeErrors(popupCards);
+    appearPopup(popupCards);
+    disableSubmitButton(createButton)}); 
+
 closeProfileButton.addEventListener('click', () => hidePopup(popupProfile)); /* Отслеживания клика по кнопке закрытия попапа для редактирования профиля */
 closeNewCardButton.addEventListener('click', () => hidePopup(popupCards)); /* Отслеживания клика по кнопке закрытия попапа для добваления новой карточки */
 closeCardButton.addEventListener('click', () => hidePopup(popupImage)); /* Отслеживания клика по кнопке закрытия попапа для просмотра карточки */

@@ -38,9 +38,9 @@
                 <form name="form" class="form form_type-profile" novalidate>
                     <input name="form__text_type_name" type="text" placeholder="Имя" class="form__text form__text_type_name" id="name-input" required minlength="2" maxlength="40">
                     <span class="form__input-error name-input-error"></span>
-                    <input name="form__text_type_about" type="text" placeholder="О себе" class="form__text form__text_type_about" id="about-input" required minlength="2" max="200">
+                    <input name="form__text_type_about" type="text" placeholder="О себе" class="form__text form__text_type_about" id="about-input" required minlength="2" maxlength="200">
                     <span class="form__input-error about-input-error"></span>
-                    <button type="submit" class="popup__submit-btn">Сохранить</button>
+                    <button type="submit" class="popup__submit-btn popup__submit-btn_save">Сохранить</button>
                 </form>
             </div>
         </aside>
@@ -54,7 +54,7 @@
                     <span class="form__input-error label-input-error"></span>
                     <input name="form__text_type_link" type="url" placeholder="Ссылка на картинку" class="form__text form__text_type_link" id="link-input" required>
                     <span class="form__input-error link-input-error"></span>
-                    <button type="submit" class="popup__submit-btn">Создать</button>
+                    <button type="submit" class="popup__submit-btn popup__submit-btn_create">Создать</button>
                 </form>
             </div>
         </aside>
@@ -83,8 +83,8 @@
         </div>
     </template>
 
+    <script src="./script/validate.js"></script>
     <script src="./script/cards.js"></script>
     <script src="./script/index.js"></script>
-    <script src="./script/validate.js"></script>
 </body>
 </html>

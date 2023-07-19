@@ -22,24 +22,27 @@ const linkInput = document.querySelector('.form__text_type_link');
 /* Функция для открытия попапов */
 function appearPopup(item) {
     item.classList.add('popup_opened');
+    document.addEventListener('keydown', hidePopupOnButton);
 };
 
 /* Функция для закрытия попапов */
 function hidePopup(item) {
     item.classList.remove('popup_opened');
+    document.removeEventListener('keydown', hidePopupOnButton);
 };
 
 /* Функция для закрытия попапов по нажатию ESC */
-function hidePopupOnButton(evt, item) {
+function hidePopupOnButton(evt) {
+    openedPopup = document.querySelector('.popup_opened');
     if (evt.key === 'Escape') { 
-        hidePopup(item);
+        hidePopup(openedPopup);
     }
 };
 
 /* Функция для закрытия попапов по нажатию на оверлэй */
-function hidePopupOnOverlay(evt, item) {
+function hidePopupOnOverlay(evt) {
     if (evt.target === evt.currentTarget) {
-        hidePopup(item);
+        hidePopup(evt.currentTarget);
     }
 }
 
@@ -89,8 +92,6 @@ const cardFormSubmit = (evt) => {
 
     const name = labelInput.value;
     const link = linkInput.value;
-    labelInput.value = '';
-    linkInput.value = '';
     const card = createCard({name, link});
     elementList.prepend(card);
 
@@ -111,25 +112,22 @@ editButton.addEventListener('click', () => {
     nameInput.value = profileName.textContent;
     jobInput.value = profileJob.textContent;
     appearPopup(popupProfile);
-    removeErrors(popupProfile);
-    enableSubmitButton(saveButton)});
+    removeErrors(popupProfile, ValidationConfig);
+    enableSubmitButton(saveButton, ValidationConfig)});
 
 /* Отслеживания клика по кнопке открытия попапа для добавления новой карточки */
 addButton.addEventListener('click', () => {
     labelInput.value = '';
     linkInput.value = '';
-    removeErrors(popupCards);
+    removeErrors(popupCards, ValidationConfig);
     appearPopup(popupCards);
-    disableSubmitButton(createButton)}); 
+    disableSubmitButton(createButton, ValidationConfig)}); 
 
 closeProfileButton.addEventListener('click', () => hidePopup(popupProfile)); /* Отслеживания клика по кнопке закрытия попапа для редактирования профиля */
 closeNewCardButton.addEventListener('click', () => hidePopup(popupCards)); /* Отслеживания клика по кнопке закрытия попапа для добваления новой карточки */
 closeCardButton.addEventListener('click', () => hidePopup(popupImage)); /* Отслеживания клика по кнопке закрытия попапа для просмотра карточки */
-document.addEventListener('keydown', (evt) => hidePopupOnButton(evt, popupProfile)); /* Отслеживания нажатия на 'Escape' для закрытия попапа редактирования профиля */
-document.addEventListener('keydown', (evt) => hidePopupOnButton(evt, popupImage)); /* Отслеживания нажатия на 'Escape' для закрытия попапа просмотра карточки */
-document.addEventListener('keydown', (evt) => hidePopupOnButton(evt, popupCards)); /* Отслеживания нажатия на 'Escape' для закрытия попапа добваления новой карточки */
-popupProfile.addEventListener('click', (evt) => hidePopupOnOverlay(evt, popupProfile)); /* Отслеживания клика на оверлэй для закрытия попапа редактирования профиля */
-popupCards.addEventListener('click', (evt) => hidePopupOnOverlay(evt, popupCards)); /* Отслеживания клика на оверлэй для закрытия попапа добваления новой карточки */
-popupImage.addEventListener('click', (evt) => hidePopupOnOverlay(evt, popupImage)); /* Отслеживания клика на оверлэй для закрытия попапа просмотра карточки */
+popupProfile.addEventListener('click', hidePopupOnOverlay); /* Отслеживания клика на оверлэй для закрытия попапа редактирования профиля */
+popupCards.addEventListener('click', hidePopupOnOverlay); /* Отслеживания клика на оверлэй для закрытия попапа добваления новой карточки */
+popupImage.addEventListener('click', hidePopupOnOverlay); /* Отслеживания клика на оверлэй для закрытия попапа просмотра карточки */
 
 

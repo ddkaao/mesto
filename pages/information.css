@@ -1,0 +1,21 @@
+/* Подключение общих стилей */
+@import url(../vendor/normalize.css);
+@import url(../vendor/inter.css);
+@import url(../blocks/container/container.css);
+@import url(../blocks/page/page.css);
+
+/* Подключение стилей у header */
+@import url(../blocks/header/header.css);
+@import url(../blocks/header/__logo/header__logo.css);
+@import url(../blocks/header/__menu/header__menu.css);
+@import url(../blocks/header/__main/header__main.css);
+@import url(../blocks/header/__information/header__information.css);
+
+@import url(../blocks/app-description/app-description.css);
+@import url(../blocks/app-description/__picture/app-description__picture.css);
+@import url(../blocks/app-description/__heading/app-description__heading.css);
+@import url(../blocks/app-description/__text/app-description__text.css);
+
+/* Подключение стилей у footer */
+@import url(../blocks/footer/footer.css);
+@import url(../blocks/footer/__copyright/footer__copyright.css);

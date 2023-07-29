@@ -1,0 +1,5 @@
+.header__menu {
+    display: flex;
+    align-items: end;
+    padding-bottom: 16px;
+}

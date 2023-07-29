@@ -1,0 +1,14 @@
+.header__information {
+    font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    color: #FFFFFF;
+    margin: 0;
+    text-decoration: none;
+}
+
+.header__information:hover {
+    opacity: 0.8;
+}

@@ -1,6 +1,7 @@
 import Card from "./Card.js";
-import { initialCards } from "./cards.js";
-import { FormValidator, ValidationConfig } from "./FormValidator.js";
+import { initialCards, ValidationConfig } from "./constants.js";
+import { FormValidator } from "./FormValidator.js";
+import { appearPopup, hidePopup, hidePopupOnOverlay } from "./utils.js";
 
 const editButton = document.querySelector('.profile__edit-btn');
 const closeProfileButton = document.querySelector('.popup__close-btn_profile');
@@ -20,33 +21,6 @@ const formCard = document.querySelector('.form_type-card');
 const labelInput = document.querySelector('.form__text_type_label');
 const linkInput = document.querySelector('.form__text_type_link');
 
-/* Функция для открытия попапов */
-function appearPopup(item) {
-    item.classList.add('popup_opened');
-    document.addEventListener('keydown', hidePopupOnButton);
-};
-
-/* Функция для закрытия попапов */
-function hidePopup(item) {
-    item.classList.remove('popup_opened');
-    document.removeEventListener('keydown', hidePopupOnButton);
-};
-
-/* Функция для закрытия попапов по нажатию ESC */
-function hidePopupOnButton(evt) {
-    const openedPopup = document.querySelector('.popup_opened');
-    if (evt.key === 'Escape') { 
-        hidePopup(openedPopup);
-    }
-};
-
-/* Функция для закрытия попапов по нажатию на оверлэй */
-function hidePopupOnOverlay(evt) {
-    if (evt.target === evt.currentTarget) {
-        hidePopup(evt.currentTarget);
-    }
-}
-
 /* Функция для редактирования профиля */
 function profileFormSubmit(evt) {
     evt.preventDefault();
@@ -63,23 +37,29 @@ const cardFormSubmit = (evt) => {
 
     const name = labelInput.value;
     const link = linkInput.value;
-    const card = new Card({name, link});
+    const card = cardInstantiation({name, link});
     elementList.prepend(card.getView());
 
     hidePopup(popupCards);
-    formNewCard.disableSubmitButton();
+    formNewCardValidate.disableSubmitButton();
 };
 
 /* Создание экземпляров валидаций форм */
-const formNewProfile = new FormValidator(ValidationConfig, formProfile);
-formNewProfile.enableValidation();
+const formNewProfileValidate = new FormValidator(ValidationConfig, formProfile);
+formNewProfileValidate.enableValidation();
 
-const formNewCard = new FormValidator(ValidationConfig, formCard);
-formNewCard.enableValidation();
+const formNewCardValidate = new FormValidator(ValidationConfig, formCard);
+formNewCardValidate.enableValidation();
+
+/* Создание экземпляров карточки */
+function cardInstantiation(item) {
+    const cardElement = new Card(item, '.card-template');
+    return cardElement;
+}
 
 /* Функция для заполнения контейнера карточками */
 initialCards.forEach((item) => {
-    const cardElement = new Card(item);
+    const cardElement = cardInstantiation(item);
     elementList.append(cardElement.getView());
 });
 
@@ -90,16 +70,15 @@ formProfile.addEventListener('submit', profileFormSubmit); /* Подтвержд
 editButton.addEventListener('click', () => {
     nameInput.value = profileName.textContent;
     jobInput.value = profileJob.textContent;
-    formNewProfile.removeErrors();
-    formNewProfile.enableSubmitButton();
+    formNewProfileValidate.removeErrors();
+    formNewProfileValidate.enableSubmitButton();
     appearPopup(popupProfile)});
 
 /* Отслеживания клика по кнопке открытия попапа для добавления новой карточки */
 addButton.addEventListener('click', () => {
-    labelInput.value = '';
-    linkInput.value = '';
-    formNewCard.removeErrors();
-    formNewCard.disableSubmitButton();
+    formCard.reset();
+    formNewCardValidate.removeErrors();
+    formNewCardValidate.disableSubmitButton();
     appearPopup(popupCards)}); 
 
 closeProfileButton.addEventListener('click', () => hidePopup(popupProfile)); /* Отслеживания клика по кнопке закрытия попапа для редактирования профиля */

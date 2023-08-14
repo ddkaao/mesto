@@ -1,12 +1,16 @@
+import { appearPopup } from "./utils.js";
+
 class Card {
-    constructor (data) {
+    constructor (data, templateSelector) {
         this._name = data.name;
         this._link = data.link;
+        this._templateSelector = templateSelector;
+        this._popupImage = document.querySelector('.popup_type-view');
     }
 
     _getTemplate() {
         const newTemplate = document.
-            querySelector('.card-template').
+            querySelector(this._templateSelector).
             content.querySelector('.element').
             cloneNode(true);
 
@@ -22,31 +26,25 @@ class Card {
         cardImage.alt = this._name;
     }
 
-    _appearPopupCard() {
-        const popupImage = document.querySelector('.popup_type-view');
-        popupImage.classList.add('popup_opened');
+    _like() {
+        this._newCard.querySelector('.element__like').classList.toggle('element__like_active');
+    }
+
+    _delete() {
+        this._newCard.remove();
+    }
+
+    _viewCard() {
+        this._popupImage.querySelector('.popup__image').src = this._link;
+        this._popupImage.querySelector('.popup__image').alt = this._name;
+        this._popupImage.querySelector('.popup__caption').textContent = this._name;
+        appearPopup(this._popupImage);
     }
 
     _setEventListeners() {
-        const likeButton = this._newCard.querySelector('.element__like');
-        const deleteButton = this._newCard.querySelector('.element__trash');
-        const popupImage = document.querySelector('.popup_type-view');
-        const cardImage = this._newCard.querySelector('.element__image');
-
-        likeButton.addEventListener('click', () => {
-            likeButton.classList.toggle('element__like_active');
-        });
-
-        deleteButton.addEventListener('click', () => {
-            this._newCard.remove();
-        });
-
-        cardImage.addEventListener('click', () => {
-            popupImage.querySelector('.popup__image').src = this._link;
-            popupImage.querySelector('.popup__image').alt = this._name;
-            popupImage.querySelector('.popup__caption').textContent = this._name;
-            this._appearPopupCard();
-        });
+        this._newCard.querySelector('.element__like').addEventListener('click', () => this._like());
+        this._newCard.querySelector('.element__trash').addEventListener('click', () => this._delete());
+        this._newCard.querySelector('.element__image').addEventListener('click', () => this._viewCard());
     }
 
     getView() {

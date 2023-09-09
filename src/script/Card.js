@@ -1,9 +1,8 @@
-import { appearPopup } from "./utils.js";
-
 class Card {
-    constructor (data, templateSelector) {
+    constructor (data, templateSelector, handleCardClick) {
         this._name = data.name;
         this._link = data.link;
+        this._handleCardClick = handleCardClick;
         this._templateSelector = templateSelector;
         this._popupImage = document.querySelector('.popup_type-view');
     }
@@ -34,17 +33,12 @@ class Card {
         this._newCard.remove();
     }
 
-    _viewCard() {
-        this._popupImage.querySelector('.popup__image').src = this._link;
-        this._popupImage.querySelector('.popup__image').alt = this._name;
-        this._popupImage.querySelector('.popup__caption').textContent = this._name;
-        appearPopup(this._popupImage);
-    }
-
     _setEventListeners() {
         this._newCard.querySelector('.element__like').addEventListener('click', () => this._like());
         this._newCard.querySelector('.element__trash').addEventListener('click', () => this._delete());
-        this._newCard.querySelector('.element__image').addEventListener('click', () => this._viewCard());
+        this._newCard.querySelector('.element__image').addEventListener('click', () => {
+            this._handleCardClick(this._link, this._name)
+        });
     }
 
     getView() {

@@ -4,19 +4,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./pages/index.css">
     <title>Mesto</title>
 </head>
 <body class="container">
     <div class="page">
         <header class="header">
-            <img src="./images/Vector.svg" alt="Логотип" class="header__logo">
+            <img src="<%=require('./images/Vector.svg')%>" alt="Логотип" class="header__logo">
         </header>
 
         <main class="content">
             <section class="profile">
                 <div class="profile__content">
-                    <img src="./images/avatar.jpg" alt="Аватар" class="profile__avatar">
+                    <img src="<%=require('./images/avatar.jpg')%>" alt="Аватар" class="profile__avatar">
                     <div class="profile__info">
                         <div class="profile__text">
                             <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -33,12 +32,12 @@
 
         <aside class="popup popup_type-edit">
             <div class="popup__container">
-                <button type="button" aria-label="Закрыть" class="popup__close-btn popup__close-btn_profile"></button>
+                <button type="button" aria-label="Закрыть" class="popup__close-btn"></button>
                 <h2 class="popup__title">Редактировать профиль</h2>
                 <form name="form" class="form form_type-profile" novalidate>
-                    <input name="form__text_type_name" type="text" placeholder="Имя" class="form__text form__text_type_name" id="name-input" required minlength="2" maxlength="40">
+                    <input name="name" type="text" placeholder="Имя" class="form__text form__text_type_name" id="name-input" required minlength="2" maxlength="40">
                     <span class="form__input-error name-input-error"></span>
-                    <input name="form__text_type_about" type="text" placeholder="О себе" class="form__text form__text_type_about" id="about-input" required minlength="2" maxlength="200">
+                    <input name="description" type="text" placeholder="О себе" class="form__text form__text_type_about" id="about-input" required minlength="2" maxlength="200">
                     <span class="form__input-error about-input-error"></span>
                     <button type="submit" class="popup__submit-btn popup__submit-btn_save">Сохранить</button>
                 </form>
@@ -47,12 +46,12 @@
 
         <aside class="popup popup_type-add">
             <div class="popup__container">
-                <button type="button" aria-label="Закрыть" class="popup__close-btn popup__close-btn_new-card"></button>
+                <button type="button" aria-label="Закрыть" class="popup__close-btn"></button>
                 <h2 class="popup__title">Новое место</h2>
                 <form name="form" class="form form_type-card" novalidate>
-                    <input name="form__text_type_label" type="text" placeholder="Название" class="form__text form__text_type_label" id="label-input" required minlength="2" maxlength="30">
+                    <input name="name" type="text" placeholder="Название" class="form__text form__text_type_label" id="label-input" required minlength="2" maxlength="30">
                     <span class="form__input-error label-input-error"></span>
-                    <input name="form__text_type_link" type="url" placeholder="Ссылка на картинку" class="form__text form__text_type_link" id="link-input" required>
+                    <input name="link" type="url" placeholder="Ссылка на картинку" class="form__text form__text_type_link" id="link-input" required>
                     <span class="form__input-error link-input-error"></span>
                     <button type="submit" class="popup__submit-btn popup__submit-btn_create">Создать</button>
                 </form>
@@ -61,7 +60,7 @@
 
         <aside class="popup popup_type-view">
             <div class="popup__img-container">
-                <button type="button" aria-label="Закрыть" class="popup__close-btn popup__close-btn_card"></button>
+                <button type="button" aria-label="Закрыть" class="popup__close-btn"></button>
                 <img src="/" alt="" class="popup__image">
                 <h3 class="popup__caption"></h3>
             </div>
@@ -82,7 +81,5 @@
             </div>
         </div>
     </template>
-
-    <script type="module" src="./script/index.js"></script>
 </body>
 </html>

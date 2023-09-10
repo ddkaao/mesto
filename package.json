@@ -10,6 +10,7 @@
   "author": "Kirshin Dmitry",
   "license": "ISC",
   "devDependencies": {
+    "@babel/core": "^7.22.17",
     "@babel/preset-env": "^7.22.15",
     "autoprefixer": "^10.4.15",
     "babel-loader": "^9.1.3",

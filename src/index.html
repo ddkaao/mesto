@@ -15,11 +15,12 @@
         <main class="content">
             <section class="profile">
                 <div class="profile__content">
-                    <img src="<%=require('./images/avatar.jpg')%>" alt="Аватар" class="profile__avatar">
+                    <button type="button" aria-label="Редактировать" class="profile__avatar-btn"></button>
+                    <img src="" alt="Аватар" class="profile__avatar">
                     <div class="profile__info">
                         <div class="profile__text">
-                            <h1 class="profile__name">Жак-Ив Кусто</h1>
-                            <p class="profile__description">Исследователь океана</p>
+                            <h1 class="profile__name"></h1>
+                            <p class="profile__description"></p>
                         </div>
                         <button type="button" aria-label="Редактировать" class="profile__edit-btn"></button>
                     </div>
@@ -64,7 +65,28 @@
                 <img src="/" alt="" class="popup__image">
                 <h3 class="popup__caption"></h3>
             </div>
-        </aside>                                                                                                                                                                                                                                                                       
+        </aside>
+        
+        <aside class="popup popup_type-delete">
+            <div class="popup__container">
+                <button type="button" aria-label="Закрыть" class="popup__close-btn"></button>
+                <h2 class="popup__title popup__title_delete">Вы уверены?</h2>
+                <button type="button" class="popup__delete-btn">Да</button>
+            </div>
+        </aside>
+
+        <aside class="popup popup_type-avatar">
+            <div class="popup__container">
+                <button type="button" aria-label="Закрыть" class="popup__close-btn"></button>
+                <h2 class="popup__title">Обновить аватар</h2>
+                <form name="form" class="form form_type-avatar" novalidate>
+                    <input name="avatar" type="url" placeholder="Ссылка на картинку" class="form__text form__text_type_link" id="link-input" required>
+                    <span class="form__input-error link-input-error"></span>
+                    <button type="submit" class="popup__submit-btn popup__submit-btn_avatar">Сохранить</button>
+                </form>
+            </div>
+        </aside>
+
 
         <footer class="footer">
             <p class="footer__copyright">© 2020 Mesto Russia</p>
@@ -73,11 +95,14 @@
 
     <template class="card-template">
         <div class="element">
-            <button type="button" aria-label="Удалить" class="element__trash"></button>
+            <button type="button" aria-label="Удалить" class="element__trash element__trash_disabled"></button>
             <img src="/" alt="" class="element__image">
             <div class="element__caption">
                 <h2 class="element__name"></h2>
-                <button type="button" aria-label="Лайкнуть" class="element__like"></button>
+                <div class="element__like-container">
+                    <button type="button" aria-label="Лайкнуть" class="element__like"></button>
+                    <p class="element__counter"></p>
+                </div>
             </div>
         </div>
     </template>

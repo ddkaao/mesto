@@ -17,6 +17,7 @@
 @import url(../blocks/profile/__description/profile__description.css);
 @import url(../blocks/profile/__edit-btn/profile__edit-btn.css);
 @import url(../blocks/profile/__add-btn/profile__add-btn.css);
+@import url(../blocks/profile/__avatar-btn/profile__avatar-btn.css);
 
 /* Подключение стилей у elements */
 @import url(../blocks/elements/elements.css);
@@ -27,6 +28,9 @@
 @import url(../blocks/element/__like/element__like.css);
 @import url(../blocks/element/__like/_active/element__like_active.css);
 @import url(../blocks/element/__trash/element__trash.css);
+@import url(../blocks/element/__trash/_disabled/element__trash_disabled.css);
+@import url(../blocks/element/__like-container/element__like-container.css);
+@import url(../blocks/element/__counter/element__counter.css);
 
 /* Подключение стилей у footer */
 @import url(../blocks/footer/footer.css);
@@ -37,6 +41,7 @@
 @import url(../blocks/popup/_opened/popup_opened.css);
 @import url(../blocks/popup/__container/popup__container.css);
 @import url(../blocks/popup/__title/popup__title.css);
+@import url(../blocks/popup/__title/_delete/popup__title_delete.css);
 @import url(../blocks/popup/__close-btn/popup__close-btn.css);
 @import url(../blocks/form/form.css);
 @import url(../blocks/form/__text/form__text.css);
@@ -51,4 +56,4 @@
 @import url(../blocks/popup/__image/popup__image.css);
 @import url(../blocks/popup/__caption/popup__caption.css);
 @import url(../blocks/form/__input-error/form__input-error.css);
-
+@import url(../blocks/popup/__delete-btn/popup__delete-btn.css);

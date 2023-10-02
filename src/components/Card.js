@@ -50,7 +50,7 @@ class Card {
     _setEventListeners() {
 
         this._newCard.querySelector('.element__like').addEventListener('click', () => {
-            this._handleCardLike(this._id, this, this._likeNumber);
+            this._handleCardLike(this._id, this, this._likeNumber, this.likesArray);
         });
         this._newCard.querySelector('.element__trash').addEventListener('click', () => this._popupCardDelete.open(this._id, this));
         this._newCard.querySelector('.element__image').addEventListener('click', () => {

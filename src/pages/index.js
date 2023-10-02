@@ -18,14 +18,17 @@ const api = new Api({
     }
 });
 
-const myId = '1556e2ec8ed5961792c47680';
+let myId = '';
 
-/* Получение информации о пользователе */
-api.getProfileInformation()
-    .then(data => {
-        profileName.textContent = data.name;
-        profileDescription.textContent = data.about;
-        profileAvatar.src = data.avatar;
+Promise.all([
+    api.getProfileInformation(), 
+    api.getAllCards()
+    ])
+    .then(([profileInformation, initialCards]) => {
+        profileInfo.setUserInfo(profileInformation);
+        myId = profileInformation._id;
+        initialCards.reverse();
+        defaultCardList.renderItems(initialCards);
     })
     .catch((err) => {
         console.log(err); 
@@ -48,19 +51,14 @@ const popupCardDelete = new PopupWithDelete('.popup_type-delete', cardDelete);
 popupCardDelete.setEventListeners();
 
 /* Создание экземпляра профиля */
-const profileInfo = new UserInfo({nameSelector: '.profile__name', descriptionSelector: '.profile__description', avatarSelector: 'profile__avatar'});
-
-/* Функция для изменения аватара */
-function changeAvatar(data) {
-    profileAvatar.src = data.avatar;
-}
+const profileInfo = new UserInfo({nameSelector: '.profile__name', descriptionSelector: '.profile__description', avatarSelector: '.profile__avatar'});
 
 /* Функция для изменения аватара */
 function avatarFormSubmit(avatar) {
     saveAvatarButton.textContent = 'Сохранение...';
     api.changeAvatar(avatar)
     .then(avatar => {
-       changeAvatar(avatar);
+       profileInfo.setUserInfo(avatar);
        popupFormAvatar.close();
     })
     .catch((err) => {
@@ -136,31 +134,22 @@ const defaultCardList = new Section({
         defaultCardList.addItem(newCard);}
     }, '.elements');
 
-api.getAllCards()
-    .then(data => {
-        data.reverse();
-        defaultCardList.renderItems(data);
-    })
-    .catch((err) => {
-        console.log(err); 
-    });
-
-function changeLikeCondition(id, card, likeNumber) {
-    if (card.likesArray.some((like) => {
+function changeLikeCondition(id, card, likeNumber, likesArray) {
+    if (likesArray.some((like) => {
         return like._id === myId;
     })) {
-        removeLike(id, card, likeNumber);
+        removeLike(id, card, likeNumber, likesArray);
     } else {
-        addLike(id, card, likeNumber);
+        addLike(id, card, likeNumber, likesArray);
     }
 }
     
 /* Функция добавления лайка */
-function addLike(id, card, likeNumber) {
+function addLike(id, card, likeNumber, likesArray) {
     api.like(id)
     .then((res) => {
         likeNumber.textContent = res.likes.length;
-        card.likesArray = res.likes;
+        likesArray = res.likes;
         card.like();
     })
     .catch((err) => {
@@ -169,11 +158,11 @@ function addLike(id, card, likeNumber) {
 }
 
 /* Функция удаления лайка */
-function removeLike(id, card, likeNumber) {
+function removeLike(id, card, likeNumber, likesArray) {
     api.unlike(id)
     .then((res) => {
         likeNumber.textContent = res.likes.length;
-        card.likesArray = res.likes;
+        likesArray = res.likes;
         card.like();
     })
     .catch((err) => {
@@ -210,7 +199,6 @@ editButton.addEventListener('click', () => {
 
 /* Отслеживания клика по кнопке открытия попапа для добавления новой карточки */
 addButton.addEventListener('click', () => {
-    formCard.reset();
     formNewCardValidate.removeErrors();
     formNewCardValidate.disableSubmitButton();
     popupFormCard.open();

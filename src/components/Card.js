@@ -37,10 +37,20 @@ class Card {
         this._newCard.remove();
     }
 
-    likeSet() {
-        const likeNumber = this._newCard.querySelector('.element__counter');
+    likeSet(res) {
 
-        likeNumber.textContent = this._likes;
+        if (this.likesArray.some((like) => {
+            return like._id === this._myId;
+        })) {
+            this._newCard.querySelector('.element__like').classList.add('element__like_active');
+            this._likeNumber.textContent = res.length;
+            this.likesArray = res;
+        } else {
+            this._newCard.querySelector('.element__like').classList.remove('element__like_active');
+            this._likeNumber.textContent = res.length;
+            this.likesArray = res;
+        }
+
     }
 
     like() {
@@ -50,22 +60,12 @@ class Card {
     _setEventListeners() {
 
         this._newCard.querySelector('.element__like').addEventListener('click', () => {
-            this._handleCardLike(this._id, this, this._likeNumber, this.likesArray);
+            this._handleCardLike(this._id, this, this.likesArray);
         });
         this._newCard.querySelector('.element__trash').addEventListener('click', () => this._popupCardDelete.open(this._id, this));
         this._newCard.querySelector('.element__image').addEventListener('click', () => {
             this._handleCardClick(this._link, this._name)
         });
-    }
-
-    _changeLike() {
-        if (this.likesArray.some((like) => {
-            return like._id === this._myId;
-        })) {
-            this._newCard.querySelector('.element__like').classList.add('element__like_active');
-        } else {
-            this._newCard.querySelector('.element__like').classList.remove('element__like_active');
-        }
     }
 
     _appearTrashIcon() {
@@ -79,7 +79,6 @@ class Card {
         this._likeNumber = this._newCard.querySelector('.element__counter');
         this._setData();
         this.likeSet(this.likesArray);
-        this._changeLike();
         this._appearTrashIcon();
         this._setEventListeners();
 

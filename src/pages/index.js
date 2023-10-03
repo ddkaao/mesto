@@ -134,22 +134,21 @@ const defaultCardList = new Section({
         defaultCardList.addItem(newCard);}
     }, '.elements');
 
-function changeLikeCondition(id, card, likeNumber, likesArray) {
+function changeLikeCondition(id, card, likesArray) {
     if (likesArray.some((like) => {
         return like._id === myId;
     })) {
-        removeLike(id, card, likeNumber, likesArray);
+        removeLike(id, card);
     } else {
-        addLike(id, card, likeNumber, likesArray);
+        addLike(id, card);
     }
 }
     
 /* Функция добавления лайка */
-function addLike(id, card, likeNumber, likesArray) {
+function addLike(id, card) {
     api.like(id)
     .then((res) => {
-        likeNumber.textContent = res.likes.length;
-        likesArray = res.likes;
+        card.likeSet(res.likes);
         card.like();
     })
     .catch((err) => {
@@ -158,11 +157,10 @@ function addLike(id, card, likeNumber, likesArray) {
 }
 
 /* Функция удаления лайка */
-function removeLike(id, card, likeNumber, likesArray) {
+function removeLike(id, card) {
     api.unlike(id)
     .then((res) => {
-        likeNumber.textContent = res.likes.length;
-        likesArray = res.likes;
+        card.likeSet(res.likes);
         card.like();
     })
     .catch((err) => {
